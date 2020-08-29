@@ -23,17 +23,17 @@
   }
   button {
     margin-bottom: 1em;
-    background-color: #007bff;
+    background-color: #006fe6;
     color: #fff;
     border-radius: 0.25rem;
-    border-color: #007bff;
+    border-color: #006fe6;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
       border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
   button:hover,
   button:focus {
-    background-color: #0069d9;
-    border-color: #0062cc;
+    background-color: #005ec2;
+    border-color: #005ec2;
   }
   button:focus {
     box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
