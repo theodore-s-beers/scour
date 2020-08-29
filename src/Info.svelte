@@ -36,7 +36,7 @@
     A plague year diversion of
     <a href="https://www.theobeers.com/" rel="noopener">Theo Beers</a>
     <br />
-    <em>Last updated 28 Aug. 2020</em>
+    <em>Last updated 29 Aug. 2020</em>
   </p>
 
 </div>
