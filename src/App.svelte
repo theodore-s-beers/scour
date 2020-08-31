@@ -4,7 +4,7 @@
 
   import Info from "./Info.svelte";
 
-  let info = false;
+  let info = window.location.hash === "#info" ? true : false;
 
   let diacsCheck = true;
   let extrasCheck = false;

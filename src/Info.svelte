@@ -1,5 +1,14 @@
 <script lang="ts">
+  import { onMount, onDestroy } from "svelte";
   import { fade } from "svelte/transition";
+
+  onMount(() => {
+    window.location.hash = "info";
+  });
+
+  onDestroy(() => {
+    window.location.hash = "main";
+  });
 </script>
 
 <div in:fade>
