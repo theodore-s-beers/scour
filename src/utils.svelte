@@ -90,8 +90,8 @@
   }
 
   export function copyText(
-    cleanTextOutput: string,
-    cleanTextField: HTMLTextAreaElement
+    cleanTextField: HTMLTextAreaElement,
+    cleanTextOutput: string
   ) {
     if (cleanTextOutput.length > 0) {
       navigator.clipboard

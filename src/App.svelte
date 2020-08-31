@@ -1,7 +1,8 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import Info from "./Info.svelte";
   import { cleanText, copyText } from "./utils.svelte";
+
+  import Info from "./Info.svelte";
 
   let info = false;
 
@@ -104,6 +105,7 @@
     <div in:fade>
 
       <div id="checkboxes">
+
         <div>
           <input type="checkbox" id="diacsCheck" bind:checked={diacsCheck} />
           <label for="diacsCheck" class="checkboxLabel">Fix ṡ, ż</label>
@@ -113,6 +115,7 @@
           <input type="checkbox" id="extrasCheck" bind:checked={extrasCheck} />
           <label for="extrasCheck" class="checkboxLabel">Extras</label>
         </div>
+
       </div>
 
       <div>
@@ -136,12 +139,13 @@
       </div>
 
       <div>
-        <button on:click={() => copyText(cleanTextOutput, cleanTextField)}>
+        <button on:click={() => copyText(cleanTextField, cleanTextOutput)}>
           Copy
         </button>
       </div>
 
       <div id="counts">
+
         <div class="count">
           Characters:
           <code>{String(cleanTextOutput.length)}</code>
@@ -162,6 +166,7 @@
             {cleanTextOutput.length === 0 ? '0' : String(cleanTextOutput.split('\n\n').length)}
           </code>
         </div>
+
       </div>
 
     </div>

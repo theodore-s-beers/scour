@@ -28,7 +28,16 @@
     empty line) are given for the cleaned output text.
   </p>
 
-  <p>Other features may be added over time, as they occur to me.</p>
+  <p>
+    Other features may be added over time, as they occur to me. In any case, the
+    source files are available
+    <a
+      href="https://github.com/theodore-s-beers/clean-text-svelte"
+      rel="noopener">
+      on GitHub
+    </a>
+    under the MIT License.
+  </p>
 
   <hr />
 
@@ -36,7 +45,7 @@
     A plague year diversion of
     <a href="https://www.theobeers.com/" rel="noopener">Theo Beers</a>
     <br />
-    <em>Last updated 29 Aug. 2020</em>
+    <em>Last updated 31 Aug. 2020</em>
   </p>
 
 </div>
