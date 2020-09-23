@@ -78,7 +78,6 @@
 </style>
 
 <svelte:head>
-
   <meta
     name="description"
     content="Clean text to prepare for pasting into a document." />
@@ -88,11 +87,9 @@
     rel="stylesheet" />
 
   <title>Clean text for pasting</title>
-
 </svelte:head>
 
 <main>
-
   <div id="infoButton">
     <button on:click={() => (info = !info)}>
       {#if !info}Show info{:else}Return to utility{/if}
@@ -103,9 +100,7 @@
 
   {#if !info}
     <div in:fade>
-
       <div id="checkboxes">
-
         <div>
           <input type="checkbox" id="diacsCheck" bind:checked={diacsCheck} />
           <label for="diacsCheck" class="checkboxLabel">Fix ṡ, ż</label>
@@ -115,7 +110,6 @@
           <input type="checkbox" id="extrasCheck" bind:checked={extrasCheck} />
           <label for="extrasCheck" class="checkboxLabel">Extras</label>
         </div>
-
       </div>
 
       <div>
@@ -123,9 +117,7 @@
         <textarea bind:value={origTextInput} id="origTextInput" rows="4" />
       </div>
 
-      <div>
-        <button on:click={() => (origTextInput = '')}>Clear</button>
-      </div>
+      <div><button on:click={() => (origTextInput = '')}>Clear</button></div>
 
       <div>
         <label for="cleanTextOutput" class="textareaLabel">Output:</label>
@@ -145,33 +137,22 @@
       </div>
 
       <div id="counts">
-
         <div class="count">
-          Characters:
-          <code>{String(cleanTextOutput.length)}</code>
+          Characters: <code>{String(cleanTextOutput.length)}</code>
         </div>
 
         <div class="count">
-          Words:
-          <code>
-            {cleanTextOutput.length === 0 ? '0' : String(cleanTextOutput
+          Words: <code> {cleanTextOutput.length === 0 ? '0' : String(cleanTextOutput
                     .replace(/\s{2,}/gm, ' ')
-                    .split(/\s/gm).length)}
-          </code>
+                    .split(/\s/gm).length)} </code>
         </div>
 
         <div class="count">
-          Paragraphs:
-          <code>
-            {cleanTextOutput.length === 0 ? '0' : String(cleanTextOutput.split('\n\n').length)}
-          </code>
+          Paragraphs: <code> {cleanTextOutput.length === 0 ? '0' : String(cleanTextOutput.split('\n\n').length)} </code>
         </div>
-
       </div>
-
     </div>
   {:else}
     <Info />
   {/if}
-
 </main>
