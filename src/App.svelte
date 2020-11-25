@@ -138,17 +138,24 @@
 
       <div id="counts">
         <div class="count">
-          Characters: <code>{String(cleanTextOutput.length)}</code>
+          Characters:
+          <code>{String(cleanTextOutput.length)}</code>
         </div>
 
         <div class="count">
-          Words: <code> {cleanTextOutput.length === 0 ? '0' : String(cleanTextOutput
+          Words:
+          <code>
+            {cleanTextOutput.length === 0 ? '0' : String(cleanTextOutput
                     .replace(/\s{2,}/gm, ' ')
-                    .split(/\s/gm).length)} </code>
+                    .split(/\s/gm).length)}
+          </code>
         </div>
 
         <div class="count">
-          Paragraphs: <code> {cleanTextOutput.length === 0 ? '0' : String(cleanTextOutput.split('\n\n').length)} </code>
+          Paragraphs:
+          <code>
+            {cleanTextOutput.length === 0 ? '0' : String(cleanTextOutput.split('\n\n').length)}
+          </code>
         </div>
       </div>
     </div>
