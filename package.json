@@ -1,6 +1,9 @@
 {
   "name": "clean-text-svelte",
   "version": "0.1.0",
+  "description": "Clean text to prepare for pasting into a document",
+  "repository": "github:theodore-s-beers/clean-text-svelte",
+  "license": "MIT",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
