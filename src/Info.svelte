@@ -41,7 +41,8 @@
     source files are available
     <a
       href="https://github.com/theodore-s-beers/clean-text-svelte"
-      rel="noopener">
+      rel="noopener"
+    >
       on GitHub
     </a>
     under the MIT License.
