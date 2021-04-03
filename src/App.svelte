@@ -2,7 +2,7 @@
   import { fade } from "svelte/transition";
   import { cleanText, copyText } from "./utils.svelte";
 
-  import Info from "Info.svelte";
+  import Info from "./Info.svelte";
 
   let info = window.location.hash === "#info" ? true : false;
 
