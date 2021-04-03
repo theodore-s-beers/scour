@@ -7,8 +7,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "standardize": "standard --fix ./rollup.config.js",
-    "standardize-ts": "ts-standard --fix ./src/main.ts",
+    "standardize": "standard --fix rollup.config.js",
+    "standardize-ts": "ts-standard --fix src/main.ts",
     "start": "sirv public",
     "validate": "svelte-check"
   },
