@@ -55,7 +55,7 @@
 
       <div>
         <label for="origTextInput" class="textareaLabel">Input:</label>
-        <textarea bind:value={origTextInput} id="origTextInput" rows="4" />
+        <textarea bind:value={origTextInput} id="origTextInput" rows="6" />
       </div>
 
       <div><button on:click={() => (origTextInput = "")}>Clear</button></div>
@@ -68,7 +68,7 @@
           readonly
           autocomplete="off"
           id="cleanTextOutput"
-          rows="4"
+          rows="6"
         />
       </div>
 
@@ -112,39 +112,39 @@
 
 <style>
   main {
+    font-family: "Noto Serif", serif;
+    margin: auto;
     max-width: 72ch;
     padding: 2ch;
-    margin: auto;
-    font-family: "Noto Serif", serif;
   }
   button {
-    margin-bottom: 1em;
     background-color: #006fe6;
-    color: #fff;
-    border-radius: 0.25rem;
     border-color: #006fe6;
+    border-radius: 0.25rem;
+    color: #fff;
+    margin-bottom: 1em;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
       border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  }
-  button:hover,
-  button:focus {
-    background-color: #005ec2;
-    border-color: #005ec2;
   }
   button:focus {
     box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
   }
+  button:focus,
+  button:hover {
+    background-color: #005ec2;
+    border-color: #005ec2;
+  }
   code {
-    font-size: 150%;
     color: #e83e8c;
+    font-size: 150%;
     margin-right: 1em;
   }
   h1 {
     margin-top: -0.3em;
   }
   textarea {
-    width: 100%;
     border-radius: 0.25rem;
+    width: 100%;
   }
   .checkboxLabel {
     display: inline-block;
@@ -167,7 +167,7 @@
   }
   #infoButton {
     display: flex;
-    justify-content: flex-end;
     font-size: small;
+    justify-content: flex-end;
   }
 </style>
