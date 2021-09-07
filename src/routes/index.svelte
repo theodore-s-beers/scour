@@ -66,7 +66,7 @@
 		/>
 	</div>
 
-	<div class="mb-3">
+	<div class="mb-2">
 		<button
 			on:click={() => copyText(cleanTextField, cleanTextOutput)}
 			class="bg-blue-600 text-gray-50 px-2 py-1 rounded text-lg md:text-base">Copy</button
@@ -74,13 +74,13 @@
 	</div>
 
 	<div class="flex flex-wrap">
-		<div class="flex space-x-2 mr-4">
+		<div class="flex space-x-2 mr-4 items-baseline">
 			<span>Characters:</span><span class="font-mono text-pink-600 text-lg"
 				>{String(cleanTextOutput.length)}</span
 			>
 		</div>
 
-		<div class="flex space-x-2 mr-4">
+		<div class="flex space-x-2 mr-4 items-baseline">
 			<span>Words:</span><span class="font-mono text-pink-600 text-lg"
 				>{cleanTextOutput.length === 0
 					? '0'
@@ -88,7 +88,7 @@
 			>
 		</div>
 
-		<div class="flex space-x-2">
+		<div class="flex space-x-2 items-baseline">
 			<span>Paragraphs:</span><span class="font-mono text-pink-600 text-lg"
 				>{cleanTextOutput.length === 0 ? '0' : String(cleanTextOutput.split('\n\n').length)}</span
 			>
