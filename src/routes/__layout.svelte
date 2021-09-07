@@ -1,5 +1,10 @@
 <script>
 	import '../app.postcss';
+	import Header from '$lib/Header.svelte';
 </script>
 
-<slot />
+<Header />
+
+<main>
+	<slot />
+</main>
