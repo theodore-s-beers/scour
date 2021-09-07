@@ -36,13 +36,13 @@
 	<div in:fade>
 		<div class="flex space-x-6 mb-3">
 			<div class="flex space-x-2 items-center">
-				<input type="checkbox" bind:checked={diacsCheck} class="w-5 h-5" /><label for="diacsCheck"
-					>Fix ṡ, ż</label
+				<input type="checkbox" bind:checked={diacsCheck} class="w-5 h-5" id="diacsCheck" /><label
+					for="diacsCheck">Fix ṡ, ż</label
 				>
 			</div>
 			<div class="flex space-x-2 items-center">
-				<input type="checkbox" bind:checked={extrasCheck} class="w-5 h-5" /><label for="extrasCheck"
-					>Extras</label
+				<input type="checkbox" bind:checked={extrasCheck} class="w-5 h-5" id="extrasCheck" /><label
+					for="extrasCheck">Extras</label
 				>
 			</div>
 		</div>
