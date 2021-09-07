@@ -53,6 +53,7 @@
 				bind:value={origTextInput}
 				rows="6"
 				class="border border-gray-300 rounded w-full p-2 bg-gray-50"
+				id="origTextInput"
 			/>
 		</div>
 
@@ -72,6 +73,7 @@
 				autocomplete="off"
 				rows="6"
 				class="border border-gray-300 w-full rounded p-2 bg-gray-50"
+				id="cleanTextOutput"
 			/>
 		</div>
 
