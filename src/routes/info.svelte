@@ -31,7 +31,13 @@
 		<p>
 			Other features may be added over time, as they occur to me. In any case, the source files are
 			available
-			<a href="https://github.com/theodore-s-beers/clean-text-svelte" rel="noopener"> on GitHub </a>
+			<a
+				href="https://github.com/theodore-s-beers/clean-text-svelte"
+				rel="noopener"
+				class="text-blue-600 hover:underline"
+			>
+				on GitHub
+			</a>
 			under the MIT License.
 		</p>
 	</div>
@@ -39,7 +45,10 @@
 	<hr class="mt-4 mb-2" />
 
 	<p>
-		A plague year diversion of <a href="https://www.theobeers.com/" rel="noopener">Theo Beers</a><br
-		/><em>Last updated 7 Sept. 2021</em>
+		A plague year diversion of <a
+			href="https://www.theobeers.com/"
+			rel="noopener"
+			class="text-blue-600 hover:underline">Theo Beers</a
+		><br /><em>Last updated 7 Sept. 2021</em>
 	</p>
 </div>
