@@ -7,86 +7,40 @@
 		// Regex for space characters
 		const spaces = /[\t\u00A0\u180E\u2000-\u200B\u202F\u205F\u3000\uFEFF]/g;
 
-		// Clean text, based on selections
-		if (diacsCheck && extrasCheck) {
-			return (
-				origTextInput
-					.normalize('NFC')
-					.trim()
-					// Diacritics start
-					.replace(/\u0053\u0331/g, '\u1E60')
-					.replace(/\u0073\u0331/g, '\u1E61')
-					.replace(/\u005A\u0324/g, '\u017B')
-					.replace(/\u007A\u0324/g, '\u017C')
-					// Diacritics end
-					.replace(/[\u0300-\u036f]/g, '')
-					.replace(spaces, '\u0020')
-					.replace(/\u0020{2,}/g, '\u0020')
-					.replace(/\u0020+\n/g, '\n')
-					.replace(/\n{3,}/g, '\n\n')
-					.replace(/[\u2011\u2012]/g, '\u002D')
-					// Extras start
-					.replace(/[\u2018\u2019]/g, '\u0027')
-					.replace(/[\u201C\u201D]/g, '\u0022')
-					.replace(/\u2013/g, '\u002D\u002D')
-					.replace(/\u2014/g, '\u002D\u002D\u002D')
-					// Extras end
-					.normalize('NFC')
-					.trim()
-			);
-		} else if (diacsCheck) {
-			return (
-				origTextInput
-					.normalize('NFC')
-					.trim()
-					// Diacritics start
-					.replace(/\u0053\u0331/g, '\u1E60')
-					.replace(/\u0073\u0331/g, '\u1E61')
-					.replace(/\u005A\u0324/g, '\u017B')
-					.replace(/\u007A\u0324/g, '\u017C')
-					// Diacritics end
-					.replace(/[\u0300-\u036f]/g, '')
-					.replace(spaces, '\u0020')
-					.replace(/\u0020{2,}/g, '\u0020')
-					.replace(/\u0020+\n/g, '\n')
-					.replace(/\n{3,}/g, '\n\n')
-					.replace(/[\u2011\u2012]/g, '\u002D')
-					.normalize('NFC')
-					.trim()
-			);
-		} else if (extrasCheck) {
-			return (
-				origTextInput
-					.normalize('NFC')
-					.trim()
-					.replace(/[\u0300-\u036f]/g, '')
-					.replace(spaces, '\u0020')
-					.replace(/\u0020{2,}/g, '\u0020')
-					.replace(/\u0020+\n/g, '\n')
-					.replace(/\n{3,}/g, '\n\n')
-					.replace(/[\u2011\u2012]/g, '\u002D')
-					// Extras start
-					.replace(/[\u2018\u2019]/g, '\u0027')
-					.replace(/[\u201C\u201D]/g, '\u0022')
-					.replace(/\u2013/g, '\u002D\u002D')
-					.replace(/\u2014/g, '\u002D\u002D\u002D')
-					// Extras end
-					.normalize('NFC')
-					.trim()
-			);
-		} else {
-			return origTextInput
-				.normalize('NFC')
-				.trim()
-				.replace(/[\u0300-\u036f]/g, '')
-				.replace(spaces, '\u0020')
-				.replace(/\u0020{2,}/g, '\u0020')
-				.replace(/\u0020+\n/g, '\n')
-				.replace(/\n{3,}/g, '\n\n')
-				.replace(/[\u2011\u2012]/g, '\u002D')
-				.normalize('NFC')
-				.trim();
+		// Initial normalization and trim
+		let text = origTextInput.normalize('NFC').trim();
+
+		// If we're fixing diacritics, do it now
+		if (diacsCheck) {
+			text = text
+				.replace(/\u0053\u0331/g, '\u1E60')
+				.replace(/\u0073\u0331/g, '\u1E61')
+				.replace(/\u005A\u0324/g, '\u017B')
+				.replace(/\u007A\u0324/g, '\u017C');
 		}
+
+		// Other standard cleaning
+		text = text
+			.replace(/[\u0300-\u036f]/g, '') // No combining diacritics
+			.replace(spaces, '\u0020') // Unusual hspace -> normal
+			.replace(/\u0020{2,}/g, '\u0020') // Multiple spaces -> one
+			.replace(/\u0020+\n/g, '\n') // No space before line break
+			.replace(/\n{3,}/g, '\n\n') // Multiple empty lines -> one
+			.replace(/[\u2011\u2012]/g, '\u002D'); // Unusual hyphens -> normal
+
+		// Do extra fixes now, if selected
+		if (extrasCheck) {
+			text = text
+				.replace(/[\u2018\u2019]/g, '\u0027')
+				.replace(/[\u201C\u201D]/g, '\u0022')
+				.replace(/\u2013/g, '\u002D\u002D')
+				.replace(/\u2014/g, '\u002D\u002D\u002D');
+		}
+
+		// Final normalization and trim
+		text = text.normalize('NFC').trim();
+
+		return text;
 	}
 
 	export function copyText(cleanTextField: HTMLTextAreaElement, cleanTextOutput: string): void {
