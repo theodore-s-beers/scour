@@ -25,6 +25,10 @@
 			respectively.
 		</p>
 		<p>
+			There is also an option to convert all letters in the input text to lowercase. (The JavaScript
+			method in question will attempt to do this in a locale-sensitive manner.)
+		</p>
+		<p>
 			Naïve counts of characters, words, and paragraphs (where separated by an empty line) are given
 			for the cleaned output text.
 		</p>
