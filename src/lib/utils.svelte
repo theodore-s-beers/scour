@@ -2,7 +2,8 @@
 	export function cleanText(
 		origTextInput: string,
 		diacsCheck: boolean,
-		extrasCheck: boolean
+		extrasCheck: boolean,
+		lowercaseCheck: boolean
 	): string {
 		// Regex for space characters
 		const spaces = /[\t\u00A0\u180E\u2000-\u200B\u202F\u205F\u3000\uFEFF]/g;
@@ -35,6 +36,11 @@
 				.replace(/[\u201C\u201D]/g, '\u0022')
 				.replace(/\u2013/g, '\u002D\u002D')
 				.replace(/\u2014/g, '\u002D\u002D\u002D');
+		}
+
+		// Make all lowercase, if selected
+		if (lowercaseCheck) {
+			text = text.toLocaleLowerCase();
 		}
 
 		// Final normalization and trim

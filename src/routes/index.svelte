@@ -4,11 +4,12 @@
 
 	let diacsCheck = true;
 	let extrasCheck = false;
+	let lowercaseCheck = false;
 
 	let origTextInput = '';
 
 	let cleanTextField: HTMLTextAreaElement;
-	$: cleanTextOutput = cleanText(origTextInput, diacsCheck, extrasCheck);
+	$: cleanTextOutput = cleanText(origTextInput, diacsCheck, extrasCheck, lowercaseCheck);
 </script>
 
 <svelte:head>
@@ -22,8 +23,8 @@
 				type="checkbox"
 				bind:checked={diacsCheck}
 				class="w-5 h-5 md:w-4 md:h-4"
-				id="diacsCheck"
-			/><label for="diacsCheck">Fix ṡ, ż</label>
+				id="diacs-check"
+			/><label for="diacs-check">Fix ṡ, ż</label>
 		</div>
 
 		<div class="flex space-x-2 items-center">
@@ -31,18 +32,27 @@
 				type="checkbox"
 				bind:checked={extrasCheck}
 				class="w-5 h-5 md:w-4 md:h-4"
-				id="extrasCheck"
-			/><label for="extrasCheck">Extras</label>
+				id="extras-check"
+			/><label for="extras-check">Extras</label>
+		</div>
+
+		<div class="flex space-x-2 items-center">
+			<input
+				type="checkbox"
+				bind:checked={lowercaseCheck}
+				class="w-5 h-5 md:w-4 md:h-4"
+				id="lowercase-check"
+			/><label for="lowercase-check">Lowercase</label>
 		</div>
 	</div>
 
-	<div class="mb-1"><label for="origTextInput">Input:</label></div>
+	<div class="mb-1"><label for="orig-text-input">Input:</label></div>
 	<div class="mb-1">
 		<textarea
 			bind:value={origTextInput}
 			rows="6"
 			class="border border-gray-300 rounded w-full p-2 bg-gray-50"
-			id="origTextInput"
+			id="orig-text-input"
 		/>
 	</div>
 
@@ -53,7 +63,7 @@
 		>
 	</div>
 
-	<div class="mb-1"><label for="cleanTextOutput">Output:</label></div>
+	<div class="mb-1"><label for="clean-text-output">Output:</label></div>
 	<div class="mb-1">
 		<textarea
 			bind:this={cleanTextField}
@@ -62,7 +72,7 @@
 			autocomplete="off"
 			rows="6"
 			class="border border-gray-300 w-full rounded p-2 bg-gray-50"
-			id="cleanTextOutput"
+			id="clean-text-output"
 		/>
 	</div>
 
