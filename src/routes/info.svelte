@@ -49,6 +49,6 @@
 			href="https://www.theobeers.com/"
 			rel="noopener"
 			class="text-blue-600 hover:underline">Theo Beers</a
-		><br /><em>Last updated 7 Sept. 2021</em>
+		><br /><em>Last updated 29 Oct. 2021</em>
 	</p>
 </div>
