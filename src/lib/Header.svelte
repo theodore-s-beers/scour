@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 
-	$: info = $page.path === '/info';
+	$: info = $page.url.pathname === '/info';
 </script>
 
 <div class="flex justify-end mb-3">
