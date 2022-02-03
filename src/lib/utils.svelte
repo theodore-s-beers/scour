@@ -14,8 +14,12 @@
 		// If we're fixing diacritics, do it now
 		if (diacsCheck) {
 			text = text
+				.replace(/\u0053\u0320/g, '\u1E60')
 				.replace(/\u0053\u0331/g, '\u1E60')
+				.replace(/\u0053\u0332/g, '\u1E60')
+				.replace(/\u0073\u0320/g, '\u1E61')
 				.replace(/\u0073\u0331/g, '\u1E61')
+				.replace(/\u0073\u0332/g, '\u1E61')
 				.replace(/\u005A\u0324/g, '\u017B')
 				.replace(/\u007A\u0324/g, '\u017C');
 		}
