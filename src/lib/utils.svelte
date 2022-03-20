@@ -14,12 +14,8 @@
 		// If we're fixing diacritics, do it now
 		if (diacsCheck) {
 			text = text
-				.replace(/\u0053\u0320/g, '\u1E60')
-				.replace(/\u0053\u0331/g, '\u1E60')
-				.replace(/\u0053\u0332/g, '\u1E60')
-				.replace(/\u0073\u0320/g, '\u1E61')
-				.replace(/\u0073\u0331/g, '\u1E61')
-				.replace(/\u0073\u0332/g, '\u1E61')
+				.replace(/\u0053[\u0320\u0331\u0332]/g, '\u1E60')
+				.replace(/\u0073[\u0320\u0331\u0332]/g, '\u1E61')
 				.replace(/\u005A\u0324/g, '\u017B')
 				.replace(/\u007A\u0324/g, '\u017C');
 		}
@@ -29,7 +25,7 @@
 			.replace(/[\u0300-\u036f]/g, '') // No combining diacritics
 			.replace(spaces, '\u0020') // Unusual hspace -> normal
 			.replace(/\u0020{2,}/g, '\u0020') // Multiple spaces -> one
-			.replace(/\u0020+\n/g, '\n') // No space before line break
+			.replace(/\u0020+\n|\n\u0020+/g, '\n') // No space before or after line break
 			.replace(/\n{3,}/g, '\n\n') // Multiple empty lines -> one
 			.replace(/[\u2011\u2012]/g, '\u002D'); // Unusual hyphens -> normal
 
