@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fade } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import { cleanText, copyText } from '$lib/utils.svelte';
 
 	let diacsCheck = true;
@@ -16,7 +16,7 @@
 	<title>Clean text for pasting</title>
 </svelte:head>
 
-<div in:fade>
+<div in:fly={{ x: -100, duration: 400, delay: 200 }} out:fly={{ x: -100, duration: 200 }}>
 	<div class="flex space-x-6 mb-3">
 		<div class="flex space-x-2 items-center">
 			<input
