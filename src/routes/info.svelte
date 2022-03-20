@@ -15,9 +15,9 @@
 			whitespace; replace two annoying diacritics specific to the romanization of Persian (this can
 			be disabled); remove any remaining combining diacritics (none should be present after NFC
 			normalization); replace any unusual horizontal space character (including tab) with a normal
-			space; reduce any instance of multiple spaces to one; remove any space before a line break;
-			reduce any instance of multiple empty lines to one; and replace any non-breaking hyphen or
-			figure dash with a normal hyphen.
+			space; reduce any instance of multiple spaces to one; remove any space before or after a line
+			break; reduce any instance of multiple empty lines to one; and replace any non-breaking hyphen
+			or figure dash with a normal hyphen.
 		</p>
 		<p>
 			With “extras” enabled, this will further replace single or double curly quotes with their
@@ -53,6 +53,6 @@
 			href="https://www.theobeers.com/"
 			rel="noopener"
 			class="text-blue-600 hover:underline">Theo Beers</a
-		><br /><em>Last updated 29 Oct. 2021</em>
+		><br /><em>Last updated 20 Mar. 2022</em>
 	</p>
 </div>
