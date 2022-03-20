@@ -2,6 +2,7 @@
 /node_modules/
 /.svelte-kit/
 /.vercel/
+/.vercel_build_output/
 /.vscode/
 
 .DS_Store
