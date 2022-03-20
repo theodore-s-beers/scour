@@ -6,7 +6,7 @@
 	<title>Clean text for pasting – Info</title>
 </svelte:head>
 
-<div in:fly={{ x: 100, duration: 400, delay: 200 }} out:fly={{ x: 100, duration: 200 }}>
+<div in:fly={{ x: 100, delay: 200 }} out:fly={{ x: 100, duration: 200 }}>
 	<h2 class="text-2xl mb-4">What does this do?</h2>
 
 	<div class="space-y-3">

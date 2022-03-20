@@ -16,7 +16,7 @@
 	<title>Clean text for pasting</title>
 </svelte:head>
 
-<div in:fly={{ x: -100, duration: 400, delay: 200 }} out:fly={{ x: -100, duration: 200 }}>
+<div in:fly={{ x: -100, delay: 200 }} out:fly={{ x: -100, duration: 200 }}>
 	<div class="flex space-x-6 mb-3">
 		<div class="flex space-x-2 items-center">
 			<input
