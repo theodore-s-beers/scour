@@ -1,15 +1,25 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { cleanText, copyText } from '$lib/utils.svelte';
+	import { browser } from '$app/env';
+	import { onMount } from 'svelte';
 
-	let diacsCheck = true;
-	let extrasCheck = false;
-	let lowercaseCheck = false;
+	let diacsCheck: boolean;
+	let extrasCheck: boolean;
+	let lowercaseCheck: boolean;
 
 	let origTextInput = '';
 
 	let cleanTextField: HTMLTextAreaElement;
 	$: cleanTextOutput = cleanText(origTextInput, diacsCheck, extrasCheck, lowercaseCheck);
+
+	onMount(() => {
+		diacsCheck = localStorage.getItem('diacsCheck') !== 'false';
+		extrasCheck = localStorage.getItem('extrasCheck') === 'true';
+		lowercaseCheck = localStorage.getItem('lowercaseCheck') === 'true';
+
+		origTextInput = localStorage.getItem('origTextInput') || '';
+	});
 </script>
 
 <svelte:head>
@@ -22,6 +32,11 @@
 			<input
 				type="checkbox"
 				bind:checked={diacsCheck}
+				on:change={() => {
+					if (browser) {
+						localStorage.setItem('diacsCheck', diacsCheck.toString());
+					}
+				}}
 				class="w-5 h-5 md:w-4 md:h-4"
 				id="diacs-check"
 			/><label for="diacs-check">Fix ṡ, ż</label>
@@ -31,6 +46,11 @@
 			<input
 				type="checkbox"
 				bind:checked={extrasCheck}
+				on:change={() => {
+					if (browser) {
+						localStorage.setItem('extrasCheck', extrasCheck.toString());
+					}
+				}}
 				class="w-5 h-5 md:w-4 md:h-4"
 				id="extras-check"
 			/><label for="extras-check">Extras</label>
@@ -40,6 +60,11 @@
 			<input
 				type="checkbox"
 				bind:checked={lowercaseCheck}
+				on:change={() => {
+					if (browser) {
+						localStorage.setItem('lowercaseCheck', lowercaseCheck.toString());
+					}
+				}}
 				class="w-5 h-5 md:w-4 md:h-4"
 				id="lowercase-check"
 			/><label for="lowercase-check">Lowercase</label>
@@ -50,6 +75,11 @@
 	<div class="mb-1">
 		<textarea
 			bind:value={origTextInput}
+			on:change={() => {
+				if (browser) {
+					localStorage.setItem('origTextInput', origTextInput);
+				}
+			}}
 			rows="6"
 			class="border border-gray-300 rounded w-full p-2 bg-gray-50"
 			id="orig-text-input"
