@@ -13,6 +13,12 @@
 	let cleanTextField: HTMLTextAreaElement;
 	$: cleanTextOutput = cleanText(origTextInput, diacsCheck, extrasCheck, lowercaseCheck);
 
+	function setInput(): void {
+		if (browser) {
+			localStorage.setItem('origTextInput', origTextInput);
+		}
+	}
+
 	onMount(() => {
 		diacsCheck = localStorage.getItem('diacsCheck') !== 'false';
 		extrasCheck = localStorage.getItem('extrasCheck') === 'true';
@@ -75,22 +81,33 @@
 	<div class="mb-1">
 		<textarea
 			bind:value={origTextInput}
-			on:change={() => {
-				if (browser) {
-					localStorage.setItem('origTextInput', origTextInput);
-				}
-			}}
+			on:change={setInput}
 			rows="6"
 			class="border border-gray-300 rounded w-full p-2 bg-gray-50"
 			id="orig-text-input"
 		/>
 	</div>
 
-	<div class="mb-3">
-		<button
-			on:click={() => (origTextInput = '')}
-			class="bg-blue-600 text-gray-50 px-2 py-1 rounded text-lg md:text-base">Clear</button
-		>
+	<div class="mb-3 flex">
+		<div class="mr-4">
+			<button
+				on:click={() => {
+					origTextInput = '';
+					setInput();
+				}}
+				class="bg-blue-600 text-gray-50 px-2 py-1 rounded text-lg md:text-base">Clear</button
+			>
+		</div>
+
+		<div>
+			<button
+				on:click={() => {
+					origTextInput = cleanTextOutput;
+					setInput();
+				}}
+				class="bg-teal-600 text-gray-50 px-2 py-1 rounded text-lg md:text-base">Cycle</button
+			>
+		</div>
 	</div>
 
 	<div class="mb-1"><label for="clean-text-output">Output:</label></div>
