@@ -33,10 +33,17 @@
 			for the cleaned output text.
 		</p>
 		<p>
+			User input is persisted to browser <a
+				href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
+				rel="noopener"
+				class="text-blue-600 hover:underline">localStorage</a
+			>. Don’t worry—there’s no backend.
+		</p>
+		<p>
 			Other features may be added over time, as they occur to me. In any case, the source files are
 			available
 			<a
-				href="https://github.com/theodore-s-beers/clean-text-svelte"
+				href="https://github.com/theodore-s-beers/scour"
 				rel="noopener"
 				class="text-blue-600 hover:underline"
 			>
@@ -53,6 +60,6 @@
 			href="https://www.theobeers.com/"
 			rel="noopener"
 			class="text-blue-600 hover:underline">Theo Beers</a
-		><br /><em>Last updated 20 Mar. 2022</em>
+		><br /><em>Last updated 5 Apr. 2022</em>
 	</p>
 </div>
