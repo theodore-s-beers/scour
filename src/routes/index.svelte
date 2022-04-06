@@ -82,7 +82,7 @@
 		<textarea
 			bind:value={origTextInput}
 			on:change={setInput}
-			rows="6"
+			rows="8"
 			class="border border-gray-300 rounded w-full p-2 bg-gray-50"
 			id="orig-text-input"
 		/>
@@ -117,7 +117,7 @@
 			bind:value={cleanTextOutput}
 			readonly
 			autocomplete="off"
-			rows="6"
+			rows="8"
 			class="border border-gray-300 w-full rounded p-2 bg-gray-50"
 			id="clean-text-output"
 		/>
