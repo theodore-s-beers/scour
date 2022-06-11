@@ -31,8 +31,8 @@
 	<title>Clean text for pasting</title>
 </svelte:head>
 
-<div class="flex space-x-6 mb-3">
-	<div class="flex space-x-2 items-center">
+<div class="mb-3 flex space-x-6">
+	<div class="flex items-center space-x-2">
 		<input
 			type="checkbox"
 			bind:checked={diacsCheck}
@@ -41,12 +41,12 @@
 					localStorage.setItem('diacsCheck', diacsCheck.toString());
 				}
 			}}
-			class="w-5 h-5 md:w-4 md:h-4"
+			class="h-5 w-5 md:h-4 md:w-4"
 			id="diacs-check"
 		/><label for="diacs-check">Fix ṡ, ż</label>
 	</div>
 
-	<div class="flex space-x-2 items-center">
+	<div class="flex items-center space-x-2">
 		<input
 			type="checkbox"
 			bind:checked={extrasCheck}
@@ -55,12 +55,12 @@
 					localStorage.setItem('extrasCheck', extrasCheck.toString());
 				}
 			}}
-			class="w-5 h-5 md:w-4 md:h-4"
+			class="h-5 w-5 md:h-4 md:w-4"
 			id="extras-check"
 		/><label for="extras-check">Extras</label>
 	</div>
 
-	<div class="flex space-x-2 items-center">
+	<div class="flex items-center space-x-2">
 		<input
 			type="checkbox"
 			bind:checked={lowercaseCheck}
@@ -69,7 +69,7 @@
 					localStorage.setItem('lowercaseCheck', lowercaseCheck.toString());
 				}
 			}}
-			class="w-5 h-5 md:w-4 md:h-4"
+			class="h-5 w-5 md:h-4 md:w-4"
 			id="lowercase-check"
 		/><label for="lowercase-check">Lowercase</label>
 	</div>
@@ -81,7 +81,7 @@
 		bind:value={origTextInput}
 		on:change={setInput}
 		rows="8"
-		class="border border-gray-300 rounded w-full p-2 bg-gray-50"
+		class="w-full rounded border border-gray-300 bg-gray-50 p-2"
 		id="orig-text-input"
 	/>
 </div>
@@ -93,7 +93,7 @@
 				origTextInput = '';
 				setInput();
 			}}
-			class="bg-blue-600 text-gray-50 px-2 py-1 rounded text-lg md:text-base">Clear</button
+			class="rounded bg-blue-600 px-2 py-1 text-lg text-gray-50 md:text-base">Clear</button
 		>
 	</div>
 
@@ -103,7 +103,7 @@
 				origTextInput = cleanTextOutput;
 				setInput();
 			}}
-			class="bg-teal-600 text-gray-50 px-2 py-1 rounded text-lg md:text-base">Cycle</button
+			class="rounded bg-teal-600 px-2 py-1 text-lg text-gray-50 md:text-base">Cycle</button
 		>
 	</div>
 </div>
@@ -116,7 +116,7 @@
 		readonly
 		autocomplete="off"
 		rows="8"
-		class="border border-gray-300 w-full rounded p-2 bg-gray-50"
+		class="w-full rounded border border-gray-300 bg-gray-50 p-2"
 		id="clean-text-output"
 	/>
 </div>
@@ -124,27 +124,27 @@
 <div class="mb-2">
 	<button
 		on:click={() => copyText(cleanTextField, cleanTextOutput)}
-		class="bg-blue-600 text-gray-50 px-2 py-1 rounded text-lg md:text-base">Copy</button
+		class="rounded bg-blue-600 px-2 py-1 text-lg text-gray-50 md:text-base">Copy</button
 	>
 </div>
 
 <div class="flex flex-wrap">
-	<div class="flex space-x-2 mr-4 items-baseline">
-		<span>Characters:</span><span class="font-mono text-pink-600 text-lg"
+	<div class="mr-4 flex items-baseline space-x-2">
+		<span>Characters:</span><span class="font-mono text-lg text-pink-600"
 			>{String(cleanTextOutput.length)}</span
 		>
 	</div>
 
-	<div class="flex space-x-2 mr-4 items-baseline">
-		<span>Words:</span><span class="font-mono text-pink-600 text-lg"
+	<div class="mr-4 flex items-baseline space-x-2">
+		<span>Words:</span><span class="font-mono text-lg text-pink-600"
 			>{cleanTextOutput.length === 0
 				? '0'
 				: String(cleanTextOutput.replace(/\s{2,}/g, ' ').split(/\s/g).length)}</span
 		>
 	</div>
 
-	<div class="flex space-x-2 items-baseline">
-		<span>Paragraphs:</span><span class="font-mono text-pink-600 text-lg"
+	<div class="flex items-baseline space-x-2">
+		<span>Paragraphs:</span><span class="font-mono text-lg text-pink-600"
 			>{cleanTextOutput.length === 0 ? '0' : String(cleanTextOutput.split('\n\n').length)}</span
 		>
 	</div>

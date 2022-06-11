@@ -2,7 +2,7 @@
 	<title>Clean text for pasting – Info</title>
 </svelte:head>
 
-<h2 class="text-2xl mb-4">What does this do?</h2>
+<h2 class="mb-4 text-2xl">What does this do?</h2>
 
 <div class="space-y-3">
 	<p>
