@@ -12,7 +12,7 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-vercel": "1.0.0-next.63",
+		"@sveltejs/adapter-vercel": "1.0.0-next.65",
 		"@sveltejs/kit": "1.0.0-next.377",
 		"@typescript-eslint/eslint-plugin": "^5.30.6",
 		"@typescript-eslint/parser": "^5.30.6",
