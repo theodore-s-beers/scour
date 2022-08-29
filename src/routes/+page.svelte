@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import { cleanText, copyText } from '$lib/utils.svelte';
 
 	let diacsCheck: boolean;
