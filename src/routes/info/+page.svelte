@@ -48,7 +48,7 @@
 	</p>
 </div>
 
-<hr class="mt-4 mb-2" />
+<hr class="mb-2 mt-4" />
 
 <p>
 	A plague year diversion of <a
