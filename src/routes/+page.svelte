@@ -103,7 +103,7 @@
 				origTextInput = cleanTextOutput;
 				setInput();
 			}}
-			class="rounded bg-teal-600 px-2 py-1 text-lg text-gray-50 md:text-base">Cycle</button
+			class="rounded bg-teal-700 px-2 py-1 text-lg text-gray-50 md:text-base">Cycle</button
 		>
 	</div>
 </div>
