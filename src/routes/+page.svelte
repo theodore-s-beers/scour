@@ -83,7 +83,7 @@
 		rows="8"
 		class="w-full rounded border border-gray-300 bg-gray-50 p-2"
 		id="orig-text-input"
-	/>
+	></textarea>
 </div>
 
 <div class="mb-3 flex">
@@ -118,7 +118,7 @@
 		rows="8"
 		class="w-full rounded border border-gray-300 bg-gray-50 p-2"
 		id="clean-text-output"
-	/>
+	></textarea>
 </div>
 
 <div class="mb-2">
