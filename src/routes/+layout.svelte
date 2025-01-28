@@ -5,7 +5,7 @@
 	let { children } = $props();
 </script>
 
-<div class="container mx-auto max-w-2xl px-4 pt-6 pb-8 text-gray-900 md:pt-5 md:pb-6">
+<div class="container mx-auto max-w-[45rem] px-4 pt-6 pb-8 text-gray-900 md:pt-5 md:pb-6">
 	<Header />
 	{@render children()}
 </div>
