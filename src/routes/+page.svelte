@@ -1,16 +1,19 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { browser } from "$app/environment";
-	import { cleanText, copyText } from "$lib/utils.svelte";
+	import { cleanText, copyText } from "$lib/utils";
 
-	let diacsCheck: boolean;
-	let extrasCheck: boolean;
-	let lowercaseCheck: boolean;
+	let diacsCheck = $state(true);
+	let extrasCheck = $state(false);
+	let lowercaseCheck = $state(false);
 
-	let origTextInput = "";
+	let origTextInput = $state("");
 
 	let cleanTextField: HTMLTextAreaElement;
-	$: cleanTextOutput = cleanText(origTextInput, diacsCheck, extrasCheck, lowercaseCheck);
+	let cleanTextOutput = $state("");
+	$effect(() => {
+		cleanTextOutput = cleanText(origTextInput, diacsCheck, extrasCheck, lowercaseCheck);
+	});
 
 	function setInput(): void {
 		if (browser) {
@@ -36,7 +39,7 @@
 		<input
 			type="checkbox"
 			bind:checked={diacsCheck}
-			on:change={() => {
+			onchange={() => {
 				if (browser) {
 					localStorage.setItem("diacsCheck", diacsCheck.toString());
 				}
@@ -50,7 +53,7 @@
 		<input
 			type="checkbox"
 			bind:checked={extrasCheck}
-			on:change={() => {
+			onchange={() => {
 				if (browser) {
 					localStorage.setItem("extrasCheck", extrasCheck.toString());
 				}
@@ -64,7 +67,7 @@
 		<input
 			type="checkbox"
 			bind:checked={lowercaseCheck}
-			on:change={() => {
+			onchange={() => {
 				if (browser) {
 					localStorage.setItem("lowercaseCheck", lowercaseCheck.toString());
 				}
@@ -79,7 +82,7 @@
 <div class="mb-1">
 	<textarea
 		bind:value={origTextInput}
-		on:change={setInput}
+		onchange={setInput}
 		rows="8"
 		class="w-full rounded border border-gray-300 bg-gray-50 p-2"
 		id="orig-text-input"
@@ -89,7 +92,7 @@
 <div class="mb-3 flex">
 	<div class="mr-4">
 		<button
-			on:click={() => {
+			onclick={() => {
 				origTextInput = "";
 				setInput();
 			}}
@@ -99,7 +102,7 @@
 
 	<div>
 		<button
-			on:click={() => {
+			onclick={() => {
 				origTextInput = cleanTextOutput;
 				setInput();
 			}}
@@ -123,7 +126,7 @@
 
 <div class="mb-2">
 	<button
-		on:click={() => copyText(cleanTextField, cleanTextOutput)}
+		onclick={() => copyText(cleanTextField, cleanTextOutput)}
 		class="rounded bg-blue-600 px-2 py-1 text-lg text-gray-50 md:text-base">Copy</button
 	>
 </div>
