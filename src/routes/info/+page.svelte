@@ -21,7 +21,7 @@
 	</p>
 	<p>
 		There is also an option to convert all letters in the input text to lowercase. (The JavaScript
-		method in question will attempt to do this in a locale-sensitive manner.)
+		method in question will attempt to do so in a locale-sensitive manner.)
 	</p>
 	<p>
 		Naïve counts of characters, words, and paragraphs (where separated by an empty line) are given
@@ -32,7 +32,7 @@
 			href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
 			rel="noopener"
 			class="text-blue-600 hover:underline">localStorage</a
-		>. Don’t worry—there’s no backend.
+		>. Don’t worry—there’s no back end.
 	</p>
 	<p>
 		Other features may be added over time, as they occur to me. In any case, the source files are
@@ -55,5 +55,5 @@
 		href="https://www.theobeers.com/"
 		rel="noopener"
 		class="text-blue-600 hover:underline">Theo Beers</a
-	><br /><em>Last updated 5 Apr. 2022</em>
+	><br /><em>Last updated 28 Jan. 2025</em>
 </p>
