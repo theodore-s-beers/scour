@@ -4,7 +4,7 @@
 
 <h2 class="mb-4 text-2xl">What does this do?</h2>
 
-<div class="space-y-3">
+<div class="space-y-3 hyphens-auto">
 	<p>
 		By default, this script will normalize the input text to Unicode form NFC; trim outside
 		whitespace; replace two annoying diacritics specific to the romanization of Persian (this can be
