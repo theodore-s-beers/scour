@@ -1,29 +1,29 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { browser } from '$app/environment';
-	import { cleanText, copyText } from '$lib/utils.svelte';
+	import { onMount } from "svelte";
+	import { browser } from "$app/environment";
+	import { cleanText, copyText } from "$lib/utils.svelte";
 
 	let diacsCheck: boolean;
 	let extrasCheck: boolean;
 	let lowercaseCheck: boolean;
 
-	let origTextInput = '';
+	let origTextInput = "";
 
 	let cleanTextField: HTMLTextAreaElement;
 	$: cleanTextOutput = cleanText(origTextInput, diacsCheck, extrasCheck, lowercaseCheck);
 
 	function setInput(): void {
 		if (browser) {
-			localStorage.setItem('origTextInput', origTextInput);
+			localStorage.setItem("origTextInput", origTextInput);
 		}
 	}
 
 	onMount(() => {
-		diacsCheck = localStorage.getItem('diacsCheck') !== 'false';
-		extrasCheck = localStorage.getItem('extrasCheck') === 'true';
-		lowercaseCheck = localStorage.getItem('lowercaseCheck') === 'true';
+		diacsCheck = localStorage.getItem("diacsCheck") !== "false";
+		extrasCheck = localStorage.getItem("extrasCheck") === "true";
+		lowercaseCheck = localStorage.getItem("lowercaseCheck") === "true";
 
-		origTextInput = localStorage.getItem('origTextInput') || '';
+		origTextInput = localStorage.getItem("origTextInput") || "";
 	});
 </script>
 
@@ -38,7 +38,7 @@
 			bind:checked={diacsCheck}
 			on:change={() => {
 				if (browser) {
-					localStorage.setItem('diacsCheck', diacsCheck.toString());
+					localStorage.setItem("diacsCheck", diacsCheck.toString());
 				}
 			}}
 			class="h-5 w-5 md:h-4 md:w-4"
@@ -52,7 +52,7 @@
 			bind:checked={extrasCheck}
 			on:change={() => {
 				if (browser) {
-					localStorage.setItem('extrasCheck', extrasCheck.toString());
+					localStorage.setItem("extrasCheck", extrasCheck.toString());
 				}
 			}}
 			class="h-5 w-5 md:h-4 md:w-4"
@@ -66,7 +66,7 @@
 			bind:checked={lowercaseCheck}
 			on:change={() => {
 				if (browser) {
-					localStorage.setItem('lowercaseCheck', lowercaseCheck.toString());
+					localStorage.setItem("lowercaseCheck", lowercaseCheck.toString());
 				}
 			}}
 			class="h-5 w-5 md:h-4 md:w-4"
@@ -90,7 +90,7 @@
 	<div class="mr-4">
 		<button
 			on:click={() => {
-				origTextInput = '';
+				origTextInput = "";
 				setInput();
 			}}
 			class="rounded bg-blue-600 px-2 py-1 text-lg text-gray-50 md:text-base">Clear</button
@@ -138,14 +138,14 @@
 	<div class="mr-4 flex items-baseline space-x-2">
 		<span>Words:</span><span class="font-mono text-lg text-pink-600"
 			>{cleanTextOutput.length === 0
-				? '0'
-				: String(cleanTextOutput.replace(/\s{2,}/g, ' ').split(/\s/g).length)}</span
+				? "0"
+				: String(cleanTextOutput.replace(/\s{2,}/g, " ").split(/\s/g).length)}</span
 		>
 	</div>
 
 	<div class="flex items-baseline space-x-2">
 		<span>Paragraphs:</span><span class="font-mono text-lg text-pink-600"
-			>{cleanTextOutput.length === 0 ? '0' : String(cleanTextOutput.split('\n\n').length)}</span
+			>{cleanTextOutput.length === 0 ? "0" : String(cleanTextOutput.split("\n\n").length)}</span
 		>
 	</div>
 </div>
