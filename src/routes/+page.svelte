@@ -96,7 +96,8 @@
 				origTextInput = "";
 				setInput();
 			}}
-			class="rounded bg-blue-600 px-2 py-1 text-lg text-gray-50 md:text-base">Clear</button
+			class="cursor-pointer rounded bg-blue-600 px-2 py-1 text-lg text-gray-50 md:text-base"
+			>Clear</button
 		>
 	</div>
 
@@ -106,7 +107,8 @@
 				origTextInput = cleanTextOutput;
 				setInput();
 			}}
-			class="rounded bg-teal-700 px-2 py-1 text-lg text-gray-50 md:text-base">Cycle</button
+			class="cursor-pointer rounded bg-teal-700 px-2 py-1 text-lg text-gray-50 md:text-base"
+			>Cycle</button
 		>
 	</div>
 </div>
@@ -127,7 +129,8 @@
 <div class="mb-2">
 	<button
 		onclick={() => copyText(cleanTextField, cleanTextOutput)}
-		class="rounded bg-blue-600 px-2 py-1 text-lg text-gray-50 md:text-base">Copy</button
+		class="cursor-pointer rounded bg-blue-600 px-2 py-1 text-lg text-gray-50 md:text-base"
+		>Copy</button
 	>
 </div>
 
