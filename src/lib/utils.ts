@@ -4,6 +4,8 @@ export function cleanText(
 	extrasCheck: boolean,
 	lowercaseCheck: boolean,
 ): string {
+	if (!origTextInput) return ""; // Immediate return for empty input
+
 	// Regex for space characters
 	const spaces = /[\t\u00A0\u180E\u2000-\u200B\u202F\u205F\u3000\uFEFF]/g;
 
