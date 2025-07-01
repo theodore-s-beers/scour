@@ -10,10 +10,7 @@
 	let origTextInput = $state("");
 
 	let cleanTextField: HTMLTextAreaElement;
-	let cleanTextOutput = $state("");
-	$effect(() => {
-		cleanTextOutput = cleanText(origTextInput, diacsCheck, extrasCheck, lowercaseCheck);
-	});
+	let cleanTextOutput = $derived(cleanText(origTextInput, diacsCheck, extrasCheck, lowercaseCheck));
 
 	function setInput(): void {
 		if (browser) {
