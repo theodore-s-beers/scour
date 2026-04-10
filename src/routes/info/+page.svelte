@@ -30,7 +30,8 @@
 	<p>
 		User input is persisted to browser <a
 			href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
-			rel="noopener"
+			target="_blank"
+			rel="noreferrer"
 			class="text-blue-600 hover:underline">localStorage</a
 		>. Don’t worry—there’s no back end.
 	</p>
@@ -39,7 +40,8 @@
 		available
 		<a
 			href="https://github.com/theodore-s-beers/scour"
-			rel="noopener"
+			target="_blank"
+			rel="noreferrer"
 			class="text-blue-600 hover:underline"
 		>
 			on GitHub
@@ -53,7 +55,6 @@
 <p>
 	A plague year diversion of <a
 		href="https://www.theobeers.com/"
-		rel="noopener"
 		class="text-blue-600 hover:underline">Theo Beers</a
 	><br /><em>Last updated 28 Jan. 2025</em>
 </p>
