@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	import { onDestroy, onMount } from "svelte";
 	import { browser } from "$app/environment";
 	import { cleanText, copyText } from "$lib/utils";
 
@@ -10,10 +10,31 @@
 	let origTextInput = $state("");
 	let cleanTextOutput = $derived(cleanText(origTextInput, diacsCheck, extrasCheck, lowercaseCheck));
 
+	let copyStatus = $state<"success" | "error" | null>(null);
+	let copyStatusTimer: ReturnType<typeof setTimeout> | undefined;
+
 	function setInput(): void {
 		if (browser) {
 			localStorage.setItem("origTextInput", origTextInput);
 		}
+	}
+
+	async function handleCopy(): Promise<void> {
+		if (cleanTextOutput.length === 0) {
+			return;
+		}
+
+		const success = await copyText(cleanTextOutput);
+		copyStatus = success ? "success" : "error";
+
+		if (copyStatusTimer) {
+			clearTimeout(copyStatusTimer);
+		}
+
+		copyStatusTimer = setTimeout(() => {
+			copyStatus = null;
+			copyStatusTimer = undefined;
+		}, 2000);
 	}
 
 	onMount(() => {
@@ -22,6 +43,12 @@
 		lowercaseCheck = localStorage.getItem("lowercaseCheck") === "true";
 
 		origTextInput = localStorage.getItem("origTextInput") || "";
+	});
+
+	onDestroy(() => {
+		if (copyStatusTimer) {
+			clearTimeout(copyStatusTimer);
+		}
 	});
 </script>
 
@@ -114,12 +141,17 @@
 	></textarea>
 </div>
 
-<div class="mb-2">
+<div class="mb-2 flex items-center gap-3">
 	<button
-		onclick={() => copyText(cleanTextOutput)}
+		onclick={handleCopy}
 		class="cursor-pointer rounded bg-blue-600 px-2 py-1 text-lg text-gray-50 md:text-base"
 		>Copy</button
 	>
+	{#if copyStatus === "success"}
+		<span class="text-green-700">Copied</span>
+	{:else if copyStatus === "error"}
+		<span class="text-red-700">Copy failed</span>
+	{/if}
 </div>
 
 <div class="flex flex-wrap">

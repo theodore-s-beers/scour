@@ -50,13 +50,17 @@ export function cleanText(
 	return text;
 }
 
-export function copyText(cleanTextOutput: string): void {
+export async function copyText(cleanTextOutput: string): Promise<boolean> {
 	if (cleanTextOutput.length === 0) {
-		return;
+		return false;
 	}
 
-	navigator.clipboard.writeText(cleanTextOutput).catch((err) => {
+	try {
+		await navigator.clipboard.writeText(cleanTextOutput);
+		return true;
+	} catch (err) {
 		const msg = err instanceof Error ? err.message : String(err);
 		console.error("Could not copy text: ", msg);
-	});
+		return false;
+	}
 }
