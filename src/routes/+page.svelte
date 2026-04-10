@@ -105,15 +105,14 @@
 	></textarea>
 </div>
 
-<div class="mb-3 flex">
+<div class="mb-3 flex text-lg text-gray-50 md:text-base">
 	<div class="mr-4">
 		<button
 			onclick={() => {
 				origTextInput = "";
 				setInput();
 			}}
-			class="cursor-pointer rounded bg-blue-600 px-2 py-1 text-lg text-gray-50 md:text-base"
-			>Clear</button
+			class="cursor-pointer rounded bg-blue-600 px-2 py-1">Clear</button
 		>
 	</div>
 
@@ -123,8 +122,7 @@
 				origTextInput = cleanTextOutput;
 				setInput();
 			}}
-			class="cursor-pointer rounded bg-teal-700 px-2 py-1 text-lg text-gray-50 md:text-base"
-			>Cycle</button
+			class="cursor-pointer rounded bg-teal-700 px-2 py-1">Cycle</button
 		>
 	</div>
 </div>
@@ -141,10 +139,8 @@
 	></textarea>
 </div>
 
-<div class="mb-2 flex items-center gap-3">
-	<button
-		onclick={handleCopy}
-		class="cursor-pointer rounded bg-blue-600 px-2 py-1 text-lg text-gray-50 md:text-base"
+<div class="mb-2 flex items-center gap-3 text-lg md:text-base">
+	<button onclick={handleCopy} class="cursor-pointer rounded bg-blue-600 px-2 py-1 text-gray-50"
 		>Copy</button
 	>
 	{#if copyStatus === "success"}
