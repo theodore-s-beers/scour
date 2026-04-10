@@ -50,19 +50,13 @@ export function cleanText(
 	return text;
 }
 
-export function copyText(cleanTextField: HTMLTextAreaElement, cleanTextOutput: string): void {
+export function copyText(cleanTextOutput: string): void {
 	if (cleanTextOutput.length === 0) {
 		return;
 	}
 
-	navigator.clipboard
-		.writeText(cleanTextOutput)
-		.then(() => {
-			cleanTextField.focus();
-			cleanTextField.select();
-		})
-		.catch((err) => {
-			const msg = err instanceof Error ? err.message : String(err);
-			console.error("Could not copy text: ", msg);
-		});
+	navigator.clipboard.writeText(cleanTextOutput).catch((err) => {
+		const msg = err instanceof Error ? err.message : String(err);
+		console.error("Could not copy text: ", msg);
+	});
 }

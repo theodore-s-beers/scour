@@ -8,8 +8,6 @@
 	let lowercaseCheck = $state(false);
 
 	let origTextInput = $state("");
-
-	let cleanTextField: HTMLTextAreaElement;
 	let cleanTextOutput = $derived(cleanText(origTextInput, diacsCheck, extrasCheck, lowercaseCheck));
 
 	function setInput(): void {
@@ -37,9 +35,7 @@
 			type="checkbox"
 			bind:checked={diacsCheck}
 			onchange={() => {
-				if (browser) {
-					localStorage.setItem("diacsCheck", diacsCheck.toString());
-				}
+				if (browser) localStorage.setItem("diacsCheck", diacsCheck.toString());
 			}}
 			class="h-5 w-5 md:h-4 md:w-4"
 			id="diacs-check"
@@ -51,9 +47,7 @@
 			type="checkbox"
 			bind:checked={extrasCheck}
 			onchange={() => {
-				if (browser) {
-					localStorage.setItem("extrasCheck", extrasCheck.toString());
-				}
+				if (browser) localStorage.setItem("extrasCheck", extrasCheck.toString());
 			}}
 			class="h-5 w-5 md:h-4 md:w-4"
 			id="extras-check"
@@ -65,9 +59,7 @@
 			type="checkbox"
 			bind:checked={lowercaseCheck}
 			onchange={() => {
-				if (browser) {
-					localStorage.setItem("lowercaseCheck", lowercaseCheck.toString());
-				}
+				if (browser) localStorage.setItem("lowercaseCheck", lowercaseCheck.toString());
 			}}
 			class="h-5 w-5 md:h-4 md:w-4"
 			id="lowercase-check"
@@ -113,8 +105,7 @@
 <div class="mb-1"><label for="clean-text-output">Output:</label></div>
 <div class="mb-1">
 	<textarea
-		bind:this={cleanTextField}
-		bind:value={cleanTextOutput}
+		value={cleanTextOutput}
 		readonly
 		autocomplete="off"
 		rows="8"
@@ -125,7 +116,7 @@
 
 <div class="mb-2">
 	<button
-		onclick={() => copyText(cleanTextField, cleanTextOutput)}
+		onclick={() => copyText(cleanTextOutput)}
 		class="cursor-pointer rounded bg-blue-600 px-2 py-1 text-lg text-gray-50 md:text-base"
 		>Copy</button
 	>
