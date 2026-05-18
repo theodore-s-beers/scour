@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onDestroy, onMount } from "svelte";
+	import { onDestroy, onMount, tick } from "svelte";
 	import { browser } from "$app/environment";
 	import { cleanText, copyText } from "$lib/utils";
 
@@ -17,6 +17,27 @@
 		if (browser) {
 			localStorage.setItem("origTextInput", origTextInput);
 		}
+	}
+
+	async function insertText(target: HTMLTextAreaElement, text: string): Promise<void> {
+		const selectionStart = target.selectionStart;
+		const selectionEnd = target.selectionEnd;
+		origTextInput = target.value.slice(0, selectionStart) + text + target.value.slice(selectionEnd);
+		setInput();
+
+		await tick();
+		target.setSelectionRange(selectionStart + text.length, selectionStart + text.length);
+	}
+
+	async function handlePaste(event: ClipboardEvent): Promise<void> {
+		const text = event.clipboardData?.getData("text/plain");
+		const target = event.currentTarget;
+		if (!text || !(target instanceof HTMLTextAreaElement)) {
+			return;
+		}
+
+		event.preventDefault();
+		await insertText(target, text);
 	}
 
 	async function handleCopy(): Promise<void> {
@@ -99,6 +120,7 @@
 	<textarea
 		bind:value={origTextInput}
 		onchange={setInput}
+		onpaste={handlePaste}
 		rows="8"
 		class="w-full rounded border border-gray-300 bg-gray-50 p-2"
 		id="orig-text-input"
