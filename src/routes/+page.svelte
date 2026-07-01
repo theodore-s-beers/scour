@@ -123,8 +123,7 @@
 		onpaste={handlePaste}
 		rows="8"
 		class="w-full rounded border border-gray-300 bg-gray-50 p-2"
-		id="orig-text-input"
-	></textarea>
+		id="orig-text-input"></textarea>
 </div>
 
 <div class="mb-3 flex text-lg text-gray-50 md:text-base">
@@ -157,8 +156,7 @@
 		autocomplete="off"
 		rows="8"
 		class="w-full rounded border border-gray-300 bg-gray-50 p-2"
-		id="clean-text-output"
-	></textarea>
+		id="clean-text-output"></textarea>
 </div>
 
 <div class="mb-2 flex items-center gap-3 text-lg md:text-base">
