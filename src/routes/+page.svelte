@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, onMount, tick } from "svelte";
-	import { browser } from "$app/environment";
-	import { cleanText, copyText } from "$lib/utils";
+	import { browser } from "$app/env";
+	import { cleanText, copyText } from "#lib/utils.ts";
 
 	let diacsCheck = $state(true);
 	let extrasCheck = $state(false);
