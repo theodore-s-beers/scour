@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onDestroy, onMount, tick } from "svelte";
-	import { browser } from "$app/env";
+	import { readStoredValue, writeStoredValue } from "#lib/storage.ts";
 	import { cleanText, copyText, normalizeLineEndings } from "#lib/utils.ts";
 
 	let diacsCheck = $state(true);
@@ -15,9 +15,7 @@
 	let copyAttempt = 0;
 
 	function setInput(): void {
-		if (browser) {
-			localStorage.setItem("origTextInput", origTextInput);
-		}
+		writeStoredValue("origTextInput", origTextInput);
 	}
 
 	async function insertText(target: HTMLTextAreaElement, text: string): Promise<void> {
@@ -73,11 +71,11 @@
 	}
 
 	onMount(() => {
-		diacsCheck = localStorage.getItem("diacsCheck") !== "false";
-		extrasCheck = localStorage.getItem("extrasCheck") === "true";
-		lowercaseCheck = localStorage.getItem("lowercaseCheck") === "true";
+		diacsCheck = readStoredValue("diacsCheck") !== "false";
+		extrasCheck = readStoredValue("extrasCheck") === "true";
+		lowercaseCheck = readStoredValue("lowercaseCheck") === "true";
 
-		origTextInput = localStorage.getItem("origTextInput") || "";
+		origTextInput = readStoredValue("origTextInput") || "";
 	});
 
 	onDestroy(() => {
@@ -98,7 +96,7 @@
 			type="checkbox"
 			bind:checked={diacsCheck}
 			onchange={() => {
-				if (browser) localStorage.setItem("diacsCheck", diacsCheck.toString());
+				writeStoredValue("diacsCheck", diacsCheck.toString());
 			}}
 			class="h-5 w-5 md:h-4 md:w-4"
 			id="diacs-check"
@@ -110,7 +108,7 @@
 			type="checkbox"
 			bind:checked={extrasCheck}
 			onchange={() => {
-				if (browser) localStorage.setItem("extrasCheck", extrasCheck.toString());
+				writeStoredValue("extrasCheck", extrasCheck.toString());
 			}}
 			class="h-5 w-5 md:h-4 md:w-4"
 			id="extras-check"
@@ -122,7 +120,7 @@
 			type="checkbox"
 			bind:checked={lowercaseCheck}
 			onchange={() => {
-				if (browser) localStorage.setItem("lowercaseCheck", lowercaseCheck.toString());
+				writeStoredValue("lowercaseCheck", lowercaseCheck.toString());
 			}}
 			class="h-5 w-5 md:h-4 md:w-4"
 			id="lowercase-check"
