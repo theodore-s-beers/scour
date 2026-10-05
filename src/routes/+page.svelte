@@ -10,8 +10,9 @@
 	let origTextInput = $state("");
 	let cleanTextOutput = $derived(cleanText(origTextInput, diacsCheck, extrasCheck, lowercaseCheck));
 
-	let copyStatus = $state<"success" | "error" | null>(null);
+	let copyStatus = $state<"copying" | "waiting" | "success" | "error" | null>(null);
 	let copyStatusTimer: ReturnType<typeof setTimeout> | undefined;
+	let copyAttempt = 0;
 
 	function setInput(): void {
 		if (browser) {
@@ -45,12 +46,24 @@
 			return;
 		}
 
+		if (copyStatusTimer) {
+			clearTimeout(copyStatusTimer);
+		}
+
+		const attempt = ++copyAttempt;
+		copyStatus = "copying";
+		copyStatusTimer = setTimeout(() => {
+			copyStatus = "waiting";
+			copyStatusTimer = undefined;
+		}, 5000);
+
 		const success = await copyText(cleanTextOutput);
-		copyStatus = success ? "success" : "error";
+		if (attempt !== copyAttempt) return;
 
 		if (copyStatusTimer) {
 			clearTimeout(copyStatusTimer);
 		}
+		copyStatus = success ? "success" : "error";
 
 		copyStatusTimer = setTimeout(() => {
 			copyStatus = null;
@@ -67,6 +80,7 @@
 	});
 
 	onDestroy(() => {
+		copyAttempt++;
 		if (copyStatusTimer) {
 			clearTimeout(copyStatusTimer);
 		}
@@ -163,11 +177,17 @@
 	<button onclick={handleCopy} class="cursor-pointer rounded bg-blue-600 px-2 py-1 text-gray-50"
 		>Copy</button
 	>
-	{#if copyStatus === "success"}
-		<span class="text-green-700">Copied</span>
-	{:else if copyStatus === "error"}
-		<span class="text-red-700">Copy failed</span>
-	{/if}
+	<span role="status">
+		{#if copyStatus === "copying"}
+			Copying…
+		{:else if copyStatus === "waiting"}
+			Still waiting for the browser. Try Copy again.
+		{:else if copyStatus === "success"}
+			<span class="text-green-700">Copied</span>
+		{:else if copyStatus === "error"}
+			<span class="text-red-700">Copy failed</span>
+		{/if}
+	</span>
 </div>
 
 <div class="flex flex-wrap">
