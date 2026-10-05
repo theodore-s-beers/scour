@@ -25,12 +25,18 @@ export function cleanText(
 			.replace(/\u007A\u0324/g, "\u017C");
 	}
 
-	// Other standard cleaning
+	// Lowercase before cleanup, since it can introduce combining marks
+	if (lowercaseCheck) {
+		text = text.toLocaleLowerCase();
+	}
+
+	// Compose supported accents before removing remaining combining marks
 	text = text
+		.normalize("NFC")
 		.replace(/[\u0300-\u036f]/g, "") // No combining diacritics
 		.replace(spaces, "\u0020") // Unusual hspace -> normal
 		.replace(/\u0020{2,}/g, "\u0020") // Multiple spaces -> one
-		.replace(/\u0020+\n|\n\u0020+/g, "\n") // No space before or after line break
+		.replace(/\u0020*\n\u0020*/g, "\n") // No space before or after line break
 		.replace(/\n{3,}/g, "\n\n") // Multiple empty lines -> one
 		.replace(/[\u2011\u2012]/g, "\u002D"); // Unusual hyphens -> normal
 
@@ -41,11 +47,6 @@ export function cleanText(
 			.replace(/[\u201C\u201D]/g, "\u0022")
 			.replace(/\u2013/g, "\u002D\u002D")
 			.replace(/\u2014/g, "\u002D\u002D\u002D");
-	}
-
-	// Make all lowercase, if selected
-	if (lowercaseCheck) {
-		text = text.toLocaleLowerCase();
 	}
 
 	// Final normalization and trim
