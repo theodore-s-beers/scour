@@ -14,6 +14,17 @@
 	let copyStatusTimer: ReturnType<typeof setTimeout> | undefined;
 	let copyAttempt = 0;
 
+	$effect(() => {
+		// Track output changes so feedback only describes current text
+		void cleanTextOutput;
+		copyAttempt++;
+		copyStatus = null;
+		if (copyStatusTimer) {
+			clearTimeout(copyStatusTimer);
+			copyStatusTimer = undefined;
+		}
+	});
+
 	function setInput(): void {
 		writeStoredValue("origTextInput", origTextInput);
 	}
