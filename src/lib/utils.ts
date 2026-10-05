@@ -1,71 +1,71 @@
 export function normalizeLineEndings(text: string): string {
-	return text.replace(/\r\n?/g, "\n");
+  return text.replace(/\r\n?/g, "\n");
 }
 
 export function cleanText(
-	origTextInput: string,
-	diacsCheck: boolean,
-	extrasCheck: boolean,
-	lowercaseCheck: boolean,
+  origTextInput: string,
+  diacsCheck: boolean,
+  extrasCheck: boolean,
+  lowercaseCheck: boolean,
 ): string {
-	if (!origTextInput) return ""; // Immediate return for empty input
+  if (!origTextInput) return ""; // Immediate return for empty input
 
-	// Regex for space characters
-	const spaces = /[\t\u00A0\u180E\u2000-\u200B\u202F\u205F\u3000\uFEFF]/g;
+  // Regex for space characters
+  const spaces = /[\t\u00A0\u180E\u2000-\u200B\u202F\u205F\u3000\uFEFF]/g;
 
-	// Initial normalization and trim
-	let text = normalizeLineEndings(origTextInput).normalize("NFC").trim();
+  // Initial normalization and trim
+  let text = normalizeLineEndings(origTextInput).normalize("NFC").trim();
 
-	// If we're fixing diacritics, do it now
-	if (diacsCheck) {
-		text = text
-			.replace(/\u0053[\u0320\u0331\u0332]/g, "\u1E60")
-			.replace(/\u0073[\u0320\u0331\u0332]/g, "\u1E61")
-			.replace(/\u005A\u0324/g, "\u017B")
-			.replace(/\u007A\u0324/g, "\u017C");
-	}
+  // If we're fixing diacritics, do it now
+  if (diacsCheck) {
+    text = text
+      .replace(/\u0053[\u0320\u0331\u0332]/g, "\u1E60")
+      .replace(/\u0073[\u0320\u0331\u0332]/g, "\u1E61")
+      .replace(/\u005A\u0324/g, "\u017B")
+      .replace(/\u007A\u0324/g, "\u017C");
+  }
 
-	// Lowercase before cleanup, since it can introduce combining marks
-	if (lowercaseCheck) {
-		text = text.toLocaleLowerCase();
-	}
+  // Lowercase before cleanup, since it can introduce combining marks
+  if (lowercaseCheck) {
+    text = text.toLocaleLowerCase();
+  }
 
-	// Compose supported accents before removing remaining combining marks
-	text = text
-		.normalize("NFC")
-		.replace(/[\u0300-\u036f]/g, "") // No combining diacritics
-		.replace(spaces, "\u0020") // Unusual hspace -> normal
-		.replace(/\u0020{2,}/g, "\u0020") // Multiple spaces -> one
-		.replace(/\u0020*\n\u0020*/g, "\n") // No space before or after line break
-		.replace(/\n{3,}/g, "\n\n") // Multiple empty lines -> one
-		.replace(/[\u2011\u2012]/g, "\u002D"); // Unusual hyphens -> normal
+  // Compose supported accents before removing remaining combining marks
+  text = text
+    .normalize("NFC")
+    .replace(/[\u0300-\u036f]/g, "") // No combining diacritics
+    .replace(spaces, "\u0020") // Unusual hspace -> normal
+    .replace(/\u0020{2,}/g, "\u0020") // Multiple spaces -> one
+    .replace(/\u0020*\n\u0020*/g, "\n") // No space before or after line break
+    .replace(/\n{3,}/g, "\n\n") // Multiple empty lines -> one
+    .replace(/[\u2011\u2012]/g, "\u002D"); // Unusual hyphens -> normal
 
-	// Do extra fixes now, if selected
-	if (extrasCheck) {
-		text = text
-			.replace(/[\u2018\u2019]/g, "\u0027")
-			.replace(/[\u201C\u201D]/g, "\u0022")
-			.replace(/\u2013/g, "\u002D\u002D")
-			.replace(/\u2014/g, "\u002D\u002D\u002D");
-	}
+  // Do extra fixes now, if selected
+  if (extrasCheck) {
+    text = text
+      .replace(/[\u2018\u2019]/g, "\u0027")
+      .replace(/[\u201C\u201D]/g, "\u0022")
+      .replace(/\u2013/g, "\u002D\u002D")
+      .replace(/\u2014/g, "\u002D\u002D\u002D");
+  }
 
-	// Final normalization and trim
-	text = text.normalize("NFC").trim();
+  // Final normalization and trim
+  text = text.normalize("NFC").trim();
 
-	return text;
+  return text;
 }
 
 export async function copyText(cleanTextOutput: string): Promise<boolean> {
-	if (cleanTextOutput.length === 0) {
-		return false;
-	}
+  if (cleanTextOutput.length === 0) {
+    return false;
+  }
 
-	try {
-		await navigator.clipboard.writeText(cleanTextOutput);
-		return true;
-	} catch (err) {
-		const msg = err instanceof Error ? err.message : String(err);
-		console.error("Could not copy text: ", msg);
-		return false;
-	}
+  try {
+    await navigator.clipboard.writeText(cleanTextOutput);
+    return true;
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("Could not copy text: ", msg);
+    return false;
+  }
 }

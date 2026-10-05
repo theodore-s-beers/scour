@@ -1,8 +1,0 @@
-/.svelte-kit/
-/.vercel/
-/.vercel_build_output/
-/build/
-/node_modules/
-
-package-lock.json
-pnpm-lock.yaml
