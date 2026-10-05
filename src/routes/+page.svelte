@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, onMount, tick } from "svelte";
 	import { browser } from "$app/env";
-	import { cleanText, copyText } from "#lib/utils.ts";
+	import { cleanText, copyText, normalizeLineEndings } from "#lib/utils.ts";
 
 	let diacsCheck = $state(true);
 	let extrasCheck = $state(false);
@@ -21,6 +21,7 @@
 	}
 
 	async function insertText(target: HTMLTextAreaElement, text: string): Promise<void> {
+		text = normalizeLineEndings(text);
 		const selectionStart = target.selectionStart;
 		const selectionEnd = target.selectionEnd;
 		origTextInput = target.value.slice(0, selectionStart) + text + target.value.slice(selectionEnd);

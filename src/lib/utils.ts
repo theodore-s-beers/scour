@@ -1,3 +1,7 @@
+export function normalizeLineEndings(text: string): string {
+	return text.replace(/\r\n?/g, "\n");
+}
+
 export function cleanText(
 	origTextInput: string,
 	diacsCheck: boolean,
@@ -10,7 +14,7 @@ export function cleanText(
 	const spaces = /[\t\u00A0\u180E\u2000-\u200B\u202F\u205F\u3000\uFEFF]/g;
 
 	// Initial normalization and trim
-	let text = origTextInput.normalize("NFC").trim();
+	let text = normalizeLineEndings(origTextInput).normalize("NFC").trim();
 
 	// If we're fixing diacritics, do it now
 	if (diacsCheck) {
