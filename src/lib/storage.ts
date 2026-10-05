@@ -12,6 +12,6 @@ export function writeStoredValue(key: string, value: string): void {
 			window.localStorage.setItem(key, value);
 		}
 	} catch {
-		// Persistence is optional; editing should still work when storage is unavailable.
+		// Persistence is optional
 	}
 }
